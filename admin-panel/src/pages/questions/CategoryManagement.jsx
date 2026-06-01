@@ -47,6 +47,21 @@ export default function CategoryManagement() {
       return;
     }
 
+    // --- HYPER-STRICT DUPLICATION PREVENTION ---
+    // This strips ALL spaces and special characters. " English " and "English" are now caught!
+    const normalizeString = (str) => (str || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+    const normalizedInput = normalizeString(trimmedName);
+
+    const isDuplicate = categories.some(
+      cat => normalizeString(cat.name) === normalizedInput && cat.id !== editingId
+    );
+
+    if (isDuplicate) {
+      showAlert(`A subject similar to "${trimmedName}" already exists! Duplicates are blocked.`);
+      return;
+    }
+    // -------------------------------------------
+
     setLoading(true);
     
     if (editingId) {

@@ -36,8 +36,22 @@ export default function UserManagement() {
       return;
     }
 
+    // --- HYPER-STRICT EMAIL DUPLICATION PREVENTION ---
+    // Forces lowercase and removes accidental spaces
+    const normalizedEmail = email.trim().toLowerCase();
+    
+    const isDuplicate = users.some(
+      u => (u.email || '').trim().toLowerCase() === normalizedEmail
+    );
+
+    if (isDuplicate) {
+      showAlert(`The email "${normalizedEmail}" is already authorized in the system!`);
+      return;
+    }
+    // -------------------------------------------------
+
     setLoading(true);
-    const result = await addUserRecord({ name, email, role });
+    const result = await addUserRecord({ name: name.trim(), email: normalizedEmail, role });
     
     if (result.success) {
       showAlert("User added to the authorized list!", "success");

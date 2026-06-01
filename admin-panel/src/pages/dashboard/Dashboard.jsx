@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getCategories, getQuestions } from '../../services/db';
+import { getSystemStats } from '../../services/db';
 import { Users, BookOpen, FileQuestion, Activity } from 'lucide-react';
 
 export default function Dashboard() {

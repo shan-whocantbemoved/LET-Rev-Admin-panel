@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getQuestions, getCategories } from '../../services/db';
+import { getSystemStats } from '../../services/db';
 import { RefreshCw, CheckCircle, Database, Server, Smartphone } from 'lucide-react';
 
 export default function ContentSyncHub() {
