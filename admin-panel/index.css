@@ -1,0 +1,96 @@
+/* Reset all margins, padding, and box-sizing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Lock the body to the exact screen size to prevent unwanted scrolling */
+body, html {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden; /* Stops the outer scrollbars */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f7f6;
+}
+
+/* --- UI UX UPGRADES --- */
+
+/* Sidebar Navigation Links */
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #bdc3c7;
+  text-decoration: none;
+  padding: 12px 15px;
+  border-radius: 6px;
+  font-size: 15px;
+  transition: all 0.2s ease-in-out;
+}
+
+.sidebar-link:hover {
+  background-color: #34495e;
+  color: white;
+}
+
+/* The Active Page Indicator! */
+.sidebar-link.active {
+  background-color: #3498db;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(52, 152, 219, 0.3);
+}
+
+/* Mobile Responsiveness Hide/Show */
+.menu-toggle { display: none; background: none; border: none; cursor: pointer; padding: 5px; color: #2c3e50; }
+
+@media (max-width: 768px) {
+  .admin-sidebar {
+    position: fixed;
+    left: -260px; /* Hide off-screen by default on mobile */
+    height: 100vh;
+    z-index: 50;
+    transition: left 0.3s ease;
+  }
+  .admin-sidebar.open {
+    left: 0; /* Slide in */
+    box-shadow: 4px 0 15px rgba(0,0,0,0.5);
+  }
+  .menu-toggle { display: block; } /* Show hamburger icon */
+  .mobile-overlay {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5); z-index: 40;
+  }
+}
+
+/* --- GLOBAL RESPONSIVE UTILITIES --- */
+
+/* Makes forms stack vertically on mobile */
+.responsive-form-row {
+  display: flex;
+  gap: 10px;
+}
+
+/* Prevents tables from breaking the screen width */
+.table-responsive-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Mobile Breakpoints */
+@media (max-width: 600px) {
+  .responsive-form-row {
+    flex-direction: column;
+  }
+  
+  .responsive-form-row button {
+    width: 100%; /* Makes the button full width on phones */
+  }
+
+  /* Adjust main content padding for smaller screens */
+  main > div {
+    padding: 15px !important; 
+  }
+}
